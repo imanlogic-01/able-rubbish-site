@@ -1,0 +1,91 @@
+// Every photograph on the site is an owner-uploaded image from the business's
+// Facebook page or Google Business Profile. Replace or add files in /source-images
+// and re-run `npm run images` to regenerate every responsive variant.
+export const imageSources = {
+  van: {
+    file: 'facebook-van.jpg',
+    slug: 'rubbish-removal-caged-tipper-van',
+    alt: 'Able Rubbish and Gardening Services caged tipper van showing the services offered and the phone number 07407 415289',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  garagesBefore: {
+    file: 'facebook-garages-before.jpg',
+    slug: 'rubbish-clearance-garage-block-before',
+    alt: 'Pile of old furniture, rolled flooring and artificial grass beside a garage block, with the clearance van parked behind',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  garagesAfter: {
+    file: 'facebook-garages-after.jpg',
+    slug: 'garage-block-after-rubbish-clearance',
+    alt: 'The same garage block after the rubbish was cleared, leaving the forecourt empty',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  hallwayBefore: {
+    file: 'facebook-hallway-before.jpg',
+    slug: 'house-clearance-hallway-before',
+    alt: 'Hallway piled with bin bags, bedding, a laundry basket, shoes and household items before a house clearance',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  hallwayAfter: {
+    file: 'facebook-hallway-after.jpg',
+    slug: 'house-clearance-hallway-after',
+    alt: 'The same hallway emptied after the house clearance, with a clear tiled floor',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  gardenBefore: {
+    file: 'facebook-back-garden-before.jpg',
+    slug: 'garden-clearance-back-garden-before',
+    alt: 'Back garden covered in broken fence panels, timber, toys, rubber matting and garden waste during a clearance',
+    tier: 'B',
+    source: 'Facebook',
+  },
+  gardenAfter: {
+    file: 'facebook-back-garden-after.jpg',
+    slug: 'garden-clearance-back-garden-after',
+    alt: 'The same back garden after clearance, with the lawn cut and the rubbish removed',
+    tier: 'A',
+    source: 'Facebook',
+  },
+  frontBefore: {
+    file: 'facebook-front-garden-before.jpg',
+    slug: 'front-garden-clearance-before',
+    alt: 'Overgrown front garden with patchy grass and dug-up soil beside a brick house before work began',
+    tier: 'B',
+    source: 'Facebook',
+    crop: { left: 230, top: 0, width: 730, height: 720 },
+  },
+  frontAfter: {
+    file: 'facebook-front-garden-after.jpg',
+    slug: 'front-garden-slate-chippings-after',
+    alt: 'The same front garden after clearance, finished with grey slate chippings',
+    tier: 'B',
+    source: 'Facebook',
+    crop: { left: 230, top: 0, width: 730, height: 720 },
+  },
+  driveway: {
+    file: 'facebook-driveway.jpg',
+    slug: 'clear-block-paved-driveway-new-build-house',
+    alt: 'Clear block-paved driveway beside a rendered new-build house',
+    tier: 'B',
+    source: 'Facebook',
+  },
+  buildersBags: {
+    file: 'google-builders-waste-bags.jpg',
+    slug: 'builders-waste-bags-terraced-street',
+    alt: 'Bulk bags of builders’ waste, timber offcuts and packaging waiting for collection outside a terraced house',
+    tier: 'A',
+    source: 'Google Business Profile',
+  },
+  buildersPile: {
+    file: 'google-builders-rubble-pile.jpg',
+    slug: 'builders-rubble-and-mixed-waste-pile',
+    alt: 'Builders’ bag of rubble, paint tubs and mixed renovation waste awaiting removal',
+    tier: 'C',
+    source: 'Google Business Profile',
+  },
+};

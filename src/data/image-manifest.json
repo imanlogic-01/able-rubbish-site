@@ -1,0 +1,166 @@
+{
+  "van": {
+    "slug": "rubbish-removal-caged-tipper-van",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "Able Rubbish and Gardening Services caged tipper van showing the services offered and the phone number 07407 415289",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "garagesBefore": {
+    "slug": "rubbish-clearance-garage-block-before",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "Pile of old furniture, rolled flooring and artificial grass beside a garage block, with the clearance van parked behind",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "garagesAfter": {
+    "slug": "garage-block-after-rubbish-clearance",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "The same garage block after the rubbish was cleared, leaving the forecourt empty",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "hallwayBefore": {
+    "slug": "house-clearance-hallway-before",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Hallway piled with bin bags, bedding, a laundry basket, shoes and household items before a house clearance",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "hallwayAfter": {
+    "slug": "house-clearance-hallway-after",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "The same hallway emptied after the house clearance, with a clear tiled floor",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "gardenBefore": {
+    "slug": "garden-clearance-back-garden-before",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Back garden covered in broken fence panels, timber, toys, rubber matting and garden waste during a clearance",
+    "tier": "B",
+    "source": "Facebook"
+  },
+  "gardenAfter": {
+    "slug": "garden-clearance-back-garden-after",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "The same back garden after clearance, with the lawn cut and the rubbish removed",
+    "tier": "A",
+    "source": "Facebook"
+  },
+  "frontBefore": {
+    "slug": "front-garden-clearance-before",
+    "width": 730,
+    "height": 720,
+    "widths": [
+      480,
+      730
+    ],
+    "alt": "Overgrown front garden with patchy grass and dug-up soil beside a brick house before work began",
+    "tier": "B",
+    "source": "Facebook"
+  },
+  "frontAfter": {
+    "slug": "front-garden-slate-chippings-after",
+    "width": 730,
+    "height": 720,
+    "widths": [
+      480,
+      730
+    ],
+    "alt": "The same front garden after clearance, finished with grey slate chippings",
+    "tier": "B",
+    "source": "Facebook"
+  },
+  "driveway": {
+    "slug": "clear-block-paved-driveway-new-build-house",
+    "width": 960,
+    "height": 720,
+    "widths": [
+      480,
+      800,
+      960
+    ],
+    "alt": "Clear block-paved driveway beside a rendered new-build house",
+    "tier": "B",
+    "source": "Facebook"
+  },
+  "buildersBags": {
+    "slug": "builders-waste-bags-terraced-street",
+    "width": 1500,
+    "height": 2000,
+    "widths": [
+      480,
+      800,
+      1200,
+      1500
+    ],
+    "alt": "Bulk bags of builders’ waste, timber offcuts and packaging waiting for collection outside a terraced house",
+    "tier": "A",
+    "source": "Google Business Profile"
+  },
+  "buildersPile": {
+    "slug": "builders-rubble-and-mixed-waste-pile",
+    "width": 512,
+    "height": 384,
+    "widths": [
+      480,
+      512
+    ],
+    "alt": "Builders’ bag of rubble, paint tubs and mixed renovation waste awaiting removal",
+    "tier": "C",
+    "source": "Google Business Profile"
+  }
+}

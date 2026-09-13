@@ -1,0 +1,5 @@
+node_modules/
+dist/
+routes.json
+.DS_Store
+.claude/
