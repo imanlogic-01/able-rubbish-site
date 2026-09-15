@@ -54,10 +54,10 @@ export const site = {
   form: { endpoint: '', method: 'POST' },
 
   // Countdown banner shown at the top of every page. Set `enabled: false` to remove it everywhere.
-  // `endsAt` is an ISO timestamp; the trailing Z means GMT/UTC.
+  // `endsAt` is an ISO timestamp with its UTC offset; +01:00 is UK summer time (BST), use Z in winter (GMT).
   disableNotice: {
     enabled: true,
-    endsAt: '2026-09-20T23:59:00Z',
+    endsAt: '2026-09-20T23:59:00+01:00',
     text: 'This site will be disabled in',
     shortText: 'Site disabled in',
     expiredText: 'This site has now been disabled.',

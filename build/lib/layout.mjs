@@ -17,11 +17,11 @@ function disableNotice() {
   if (!n?.enabled) return '';
   const ends = new Date(n.endsAt);
   const p = Object.fromEntries(
-    new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
       .formatToParts(ends)
       .map((x) => [x.type, x.value]),
   );
-  const when = `${p.hour}:${p.minute} GMT, ${p.weekday} ${p.day} ${p.month} ${p.year}`; // e.g. 23:59 GMT, Sunday 20 September 2026
+  const when = `${p.hour}:${p.minute} UK time, ${p.weekday} ${p.day} ${p.month} ${p.year}`; // e.g. 23:59 UK time, Sunday 20 September 2026
   const expired = Date.now() >= ends.getTime();
   const unit = (key, label) => `<span class="notice__unit"><b data-cd="${key}">00</b>${label}</span>`;
   return `
