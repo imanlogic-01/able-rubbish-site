@@ -53,6 +53,16 @@ export const site = {
   // While empty, the form validates and then opens a pre-filled email to the business address.
   form: { endpoint: '', method: 'POST' },
 
+  // Countdown banner shown at the top of every page. Set `enabled: false` to remove it everywhere.
+  // `endsAt` is an ISO timestamp; the trailing Z means GMT/UTC.
+  disableNotice: {
+    enabled: true,
+    endsAt: '2026-09-20T23:59:00Z',
+    text: 'This site will be disabled in',
+    shortText: 'Site disabled in',
+    expiredText: 'This site has now been disabled.',
+  },
+
   colours: {
     primary: '#1D3288',
     ink: '#0C1530',

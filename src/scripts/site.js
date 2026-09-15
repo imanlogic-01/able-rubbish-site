@@ -8,6 +8,25 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Countdown banner: ticks down to data-countdown, then switches to the expired message
+  const notice = $('[data-countdown]');
+  if (notice) {
+    const end = Date.parse(notice.dataset.countdown);
+    const parts = Object.fromEntries($$('[data-cd]', notice).map((el) => [el.dataset.cd, el]));
+    const two = (n) => String(n).padStart(2, '0');
+    let timer;
+    const tick = () => {
+      const left = Math.max(0, Math.floor((end - Date.now()) / 1000));
+      if (!left) { notice.classList.add('is-expired'); clearInterval(timer); return; }
+      parts.d.textContent = Math.floor(left / 86400);
+      parts.h.textContent = two(Math.floor(left / 3600) % 24);
+      parts.m.textContent = two(Math.floor(left / 60) % 60);
+      parts.s.textContent = two(left % 60);
+    };
+    tick();
+    if (!notice.classList.contains('is-expired')) timer = setInterval(tick, 1000);
+  }
+
   // Header state over the hero
   const header = $('[data-header]');
   const onScroll = () => header && header.classList.toggle('is-scrolled', window.scrollY > 40);

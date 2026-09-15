@@ -10,12 +10,41 @@ export const logoMark = (cls = '') => `<svg class="logo-mark ${cls}" viewBox="0 
 
 export const logo = () => `<a class="logo" href="/" aria-label="${esc(site.name)} — home">${logoMark()}<span class="logo-text"><strong>Able</strong><span>Rubbish &amp; Gardening</span></span></a>`;
 
+// Countdown to the date the site is disabled. Rendered statically (date always readable without JS);
+// site.js fills in and ticks the countdown. If the build runs after the deadline, the expired state is baked in.
+function disableNotice() {
+  const n = site.disableNotice;
+  if (!n?.enabled) return '';
+  const ends = new Date(n.endsAt);
+  const p = Object.fromEntries(
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
+      .formatToParts(ends)
+      .map((x) => [x.type, x.value]),
+  );
+  const when = `${p.hour}:${p.minute} GMT, ${p.weekday} ${p.day} ${p.month} ${p.year}`; // e.g. 23:59 GMT, Sunday 20 September 2026
+  const expired = Date.now() >= ends.getTime();
+  const unit = (key, label) => `<span class="notice__unit"><b data-cd="${key}">00</b>${label}</span>`;
+  return `
+<div class="notice${expired ? ' is-expired' : ''}" role="region" aria-label="Site notice" data-countdown="${esc(n.endsAt)}">
+  <div class="container notice__inner">
+    <p class="notice__sr sr-only">${esc(n.text.replace(/\s+in$/, ''))} at ${esc(when)}.</p>
+    <p class="notice__live" aria-hidden="true">
+      <span class="notice__text"><span class="notice__long">${esc(n.text)}</span><span class="notice__short">${esc(n.shortText)}</span></span>
+      <span class="notice__timer">${unit('d', 'd')}${unit('h', 'h')}${unit('m', 'm')}${unit('s', 's')}</span>
+      <span class="notice__when">at <time datetime="${esc(n.endsAt)}">${esc(when)}</time></span>
+    </p>
+    <p class="notice__done">${esc(n.expiredText)}</p>
+  </div>
+</div>`;
+}
+
 function header({ overHero }) {
   const serviceLinks = services
     .map((s, i) => `<li><a href="/services/${s.slug}"><span class="dd-num">0${i + 1}</span><span><strong>${esc(s.navLabel)}</strong><small>${esc(s.summary.split(' — ')[0])}</small></span></a></li>`)
     .join('');
   return `
 <a class="skip-link" href="#main">Skip to content</a>
+${disableNotice()}
 <header class="site-header${overHero ? ' is-over-hero' : ''}" data-header>
   <div class="container header-inner">
     ${logo()}
@@ -128,7 +157,7 @@ export function page({ path, title, description, body, schema = [], noindex = fa
   const canonical = abs(path);
   const og = ogImage ? (() => { const m = imageMeta(ogImage); const w = m.widths.find((x) => x >= 1200) || m.widths.at(-1); return { url: `${site.url}/img/${m.slug}-${w}.jpg`, w, h: Math.round((m.height / m.width) * w) }; })() : { url: `${site.url}/img/og-able-rubbish-and-gardening-services.jpg`, w: 1200, h: 630 };
   return `<!doctype html>
-<html lang="en-GB">
+<html lang="en-GB"${site.disableNotice?.enabled ? ' class="has-notice"' : ''}>
 <head>
 <meta charset="utf-8">
 <script>document.documentElement.classList.add('js')</script>
