@@ -21,6 +21,9 @@ assert.equal(sent[0].reply_to, 'sam@example.com');
 assert.ok(sent[0].subject.includes('Garden Clearance'));
 assert.equal(sent[1].to, 'sam@example.com');
 assert.ok(!sent[0].html.includes('<b>Lee'), 'html must be escaped');
+assert.ok(sent[0].html.includes('Manrope') && sent[1].html.includes('Manrope'), 'brand font present');
+assert.ok(sent[0].text && sent[1].text, 'plain-text part present for both');
+assert.ok(sent[1].html.includes('No job too big or small'), 'slogan present');
 
 sent.length = 0;
 r = await call({ name: 'No Email', phone: '07700900123' });

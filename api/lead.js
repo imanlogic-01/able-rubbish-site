@@ -31,26 +31,65 @@ export function validate(l) {
   return '';
 }
 
-export function buildEmails(l, { from, notifyTo, phone, siteName = 'Able Rubbish and Gardening Services', slogan = 'No job too big or small' }) {
+// ---- Branded email layout (table-based, inline styles: renders in Gmail, Outlook and Apple Mail) ----
+// Manrope loads where the client allows web fonts (Apple Mail, iOS Mail); Gmail and Outlook fall back to Arial.
+const B = { primary: '#1D3288', ink: '#0C1530', accent: '#2E7A1E', bg: '#F4F2ED', muted: '#4A5068', border: '#D9D5CB' };
+const FONT = "'Manrope', Arial, Helvetica, sans-serif";
+
+function layout({ siteUrl, siteName, slogan, phone, hours, preheader, heading, body }) {
+  const tel = `tel:${phone.replace(/[^\d+]/g, '')}`;
+  return `<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><title>${esc(heading)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap');body,td,p,a{font-family:${FONT}}</style></head>
+<body style="margin:0;padding:0;background:${B.bg};font-family:${FONT};color:${B.ink}">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:${B.bg}">${esc(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${B.bg}"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid ${B.border}">
+<tr><td style="background:${B.primary};padding:18px 28px">
+  <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+    <td style="padding-right:12px"><img src="${esc(siteUrl)}/apple-touch-icon.png" width="44" height="44" alt="" style="display:block;border-radius:10px;border:0"></td>
+    <td style="font-family:${FONT};color:#ffffff;font-size:20px;font-weight:800;letter-spacing:-0.01em;line-height:1.1">Able Rubbish<br><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8">&amp; Gardening Services</span></td>
+  </tr></table>
+</td></tr>
+<tr><td style="background:${B.accent};padding:9px 28px;font-family:${FONT};color:#ffffff;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase">${esc(slogan)}</td></tr>
+<tr><td style="padding:30px 28px 26px;font-family:${FONT};font-size:16px;line-height:1.6;color:${B.ink}">
+  <h1 style="margin:0 0 16px;font-family:${FONT};font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;color:${B.ink}">${esc(heading)}</h1>
+  ${body}
+</td></tr>
+<tr><td style="background:${B.bg};padding:20px 28px;font-family:${FONT};font-size:13px;line-height:1.6;color:${B.muted}">
+  <strong style="color:${B.ink}">${esc(siteName)}</strong><br>
+  <a href="${esc(tel)}" style="color:${B.primary};text-decoration:none;font-weight:700">${esc(phone)}</a> &nbsp;·&nbsp; <a href="${esc(siteUrl)}" style="color:${B.primary};text-decoration:none">${esc(siteUrl.replace(/^https?:\/\//, ''))}</a><br>
+  ${esc(hours)}
+</td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+const button = (href, label) => `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:4px 0 20px"><tr><td style="background:${B.accent};border-radius:10px"><a href="${esc(href)}" style="display:inline-block;padding:14px 24px;font-family:${FONT};font-size:16px;font-weight:800;color:#ffffff;text-decoration:none">${esc(label)}</a></td></tr></table>`;
+
+export function buildEmails(l, { from, notifyTo, phone, siteUrl = 'https://ablerubbish.co.uk', siteName = 'Able Rubbish and Gardening Services', slogan = 'No job too big or small', hours = '7 days a week, 6am to 11pm' }) {
   const first = l.name.split(/\s+/)[0];
   const details = FIELDS.filter(([k]) => l[k]).map(([k, label]) => [label, l[k]]);
-  const detailsHtml = details.map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#566;vertical-align:top"><strong>${esc(k)}</strong></td><td style="padding:6px 0">${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('');
+  const rowsHtml = (rows) => rows.map(([k, v]) => `<tr><td style="padding:7px 16px 7px 0;color:${B.muted};vertical-align:top;font-weight:700;font-size:14px;white-space:nowrap">${esc(k)}</td><td style="padding:7px 0;font-size:15px">${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('');
   const detailsText = details.map(([k, v]) => `${k}: ${v}`).join('\n');
   const telHref = `tel:${l.phone.replace(/[^\d+]/g, '')}`;
+  const common = { siteUrl, siteName, slogan, phone, hours };
 
+  const alertRows = [['Name', l.name], ['Phone', l.phone], ['Email', l.email || '—'], ...details];
   const alert = {
     from,
     to: notifyTo,
     ...(l.email ? { reply_to: l.email } : {}),
     subject: `New lead: ${l.service || 'Enquiry'} — ${l.name}${l.postcode ? ` (${l.postcode.toUpperCase()})` : ''}`,
     text: `New enquiry from the website\n\nName: ${l.name}\nPhone: ${l.phone}\nEmail: ${l.email || '—'}\n${detailsText}\n\nCall them back as soon as you can.`,
-    html: `<div style="font-family:Arial,sans-serif;max-width:560px;color:#0C1530">
-<p style="font-size:18px;margin:0 0 12px"><strong>New lead from the website</strong></p>
-<p style="margin:0 0 16px"><a href="${esc(telHref)}" style="display:inline-block;background:#2E7A1E;color:#fff;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:8px">Call ${esc(l.name)}: ${esc(l.phone)}</a></p>
-<table style="border-collapse:collapse;font-size:15px"><tr><td style="padding:6px 14px 6px 0;color:#566"><strong>Name</strong></td><td>${esc(l.name)}</td></tr>
-<tr><td style="padding:6px 14px 6px 0;color:#566"><strong>Phone</strong></td><td><a href="${esc(telHref)}">${esc(l.phone)}</a></td></tr>
-<tr><td style="padding:6px 14px 6px 0;color:#566"><strong>Email</strong></td><td>${l.email ? `<a href="mailto:${esc(l.email)}">${esc(l.email)}</a>` : '—'}</td></tr>${detailsHtml}</table>
-<p style="color:#566;font-size:13px;margin-top:18px">The fastest reply wins the job. Replying to this email goes straight to the customer.</p></div>`,
+    html: layout({
+      ...common,
+      preheader: `${l.name} (${l.phone}) wants a quote${l.service ? ` for ${l.service}` : ''}. Call them back.`,
+      heading: 'New lead from the website',
+      body: `${button(telHref, `Call ${l.name}: ${l.phone}`)}
+<table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%">${rowsHtml(alertRows)}</table>
+<p style="margin:20px 0 0;font-size:14px;color:${B.muted}">The fastest reply wins the job. Replying to this email goes straight to the customer.</p>`,
+    }),
   };
 
   const confirmation = l.email
@@ -59,14 +98,17 @@ export function buildEmails(l, { from, notifyTo, phone, siteName = 'Able Rubbish
         to: l.email,
         reply_to: notifyTo,
         subject: `Thanks ${first} — we've got your request`,
-        text: `Hi ${first},\n\nThanks for getting in touch with ${siteName}. ${slogan}.\n\nWe'll call you on ${l.phone} to confirm the details and give you a free quote. No work starts until you're happy with the price.\n\n${detailsText ? `What you told us:\n${detailsText}\n\n` : ''}Need us sooner? Call ${phone} (7 days a week, 6am to 11pm).\n\n${siteName}`,
-        html: `<div style="font-family:Arial,sans-serif;max-width:560px;color:#0C1530;line-height:1.5">
-<p style="font-size:18px">Hi ${esc(first)},</p>
-<p>Thanks for getting in touch with <strong>${esc(siteName)}</strong>. <em>${esc(slogan)}.</em></p>
-<p>We'll call you on <strong>${esc(l.phone)}</strong> to confirm the details and give you a free quote. No work starts until you're happy with the price.</p>
-${details.length ? `<p style="margin-bottom:4px"><strong>What you told us</strong></p><table style="border-collapse:collapse;font-size:15px">${detailsHtml}</table>` : ''}
-<p>Need us sooner? Call <a href="tel:${esc(phone.replace(/\s/g, ''))}"><strong>${esc(phone)}</strong></a> — 7 days a week, 6am to 11pm.</p>
-<p style="color:#566">${esc(siteName)}</p></div>`,
+        text: `Hi ${first},\n\nThanks for getting in touch with ${siteName}. ${slogan}.\n\nWe'll call you on ${l.phone} to confirm the details and give you a free quote. No work starts until you're happy with the price.\n\n${detailsText ? `What you told us:\n${detailsText}\n\n` : ''}Need us sooner? Call ${phone} (${hours}).\n\n${siteName}\n${siteUrl}`,
+        html: layout({
+          ...common,
+          preheader: `We'll call you on ${l.phone} to confirm the details and give you a free quote.`,
+          heading: `Thanks ${first}, we've got your request`,
+          body: `<p style="margin:0 0 14px">We'll call you on <strong>${esc(l.phone)}</strong> to confirm the details and give you a free quote. No work starts until you're happy with the price.</p>
+${details.length ? `<p style="margin:18px 0 6px;font-weight:800">What you told us</p><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;border-top:1px solid ${B.border}">${rowsHtml(details)}</table>` : ''}
+<p style="margin:22px 0 10px">Need us sooner?</p>
+${button(`tel:${phone.replace(/[^\d+]/g, '')}`, `Call ${phone}`)}
+<p style="margin:0;font-size:14px;color:${B.muted}">Open ${esc(hours)}.</p>`,
+        }),
       }
     : null;
   return { alert, confirmation };
@@ -87,7 +129,8 @@ export default async function handler(req, res) {
   if (bad) return res.status(400).json({ ok: false, error: bad });
 
   const notifyTo = notify.split(',').map((s) => s.trim()).filter(Boolean);
-  const { alert, confirmation } = buildEmails(lead, { from, notifyTo, phone: process.env.LEAD_PHONE || '07407 415289' });
+  const siteUrl = (process.env.SITE_URL || 'https://ablerubbish.co.uk').replace(/\/+$/, '');
+  const { alert, confirmation } = buildEmails(lead, { from, notifyTo, siteUrl, phone: process.env.LEAD_PHONE || '07407 415289' });
   const [a, c] = await Promise.allSettled([send(alert, key), confirmation ? send(confirmation, key) : Promise.resolve()]);
   if (c.status === 'rejected') console.error('lead confirmation failed', c.reason?.message);
   if (a.status === 'rejected') { console.error('lead alert failed', a.reason?.message); return res.status(502).json({ ok: false, error: 'Could not send' }); }
