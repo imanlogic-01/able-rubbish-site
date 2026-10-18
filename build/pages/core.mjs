@@ -383,7 +383,43 @@ export function thankYouPage() {
     <p>Need us sooner? Call <a href="${tel}">${site.phone.display}</a> — we’re available ${site.hours.label.toLowerCase()}.</p>
     <div class="cta-row cta-row--center"><a class="btn btn--primary btn--lg" href="${tel}">${icon.phone} Call now</a><a class="btn btn--outline btn--lg" href="/">Back to home</a></div>
   </div>
-</section>`;
+</section>
+
+<section class="section ty-proof" aria-label="Why customers trust us"><div class="container">${proofStrip()}</div></section>
+
+${processSection({
+    dark: false,
+    label: 'What happens next',
+    heading: 'Here’s what to expect from us',
+    steps: [
+      { title: 'We read your request', text: 'We look at what needs to go and where it is, so the quote fits the job.' },
+      { title: 'We get in touch', text: 'We’ll call or message you to confirm the details and give you a free quote.' },
+      { title: 'You agree the price', text: 'No work starts until you’re happy with the price and the collection time.' },
+      { title: 'We clear it', text: 'We carry it out, load up and take it all away in the same visit.' },
+    ],
+  })}
+
+${reviewsSection({ bgImage: 'gardenAfter', heading: 'While you wait: what customers say about us' })}
+
+<section class="section" aria-labelledby="ty-work-h">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div><p class="label">Recent work</p><h2 id="ty-work-h" class="h2">The kind of result you can expect</h2></div>
+      <p class="lead">Real jobs, photographed by the team. Drag each image to see the before and after.</p>
+    </div>
+    <div class="ba-grid">
+      ${beforeAfter(['hallwayBefore', 'hallwayAfter'], { caption: 'House clearance — a hallway emptied of bags, bedding and household items.', sizes: '(min-width: 900px) 50vw, 100vw' })}
+      ${beforeAfter(['gardenBefore', 'gardenAfter'], { caption: 'Garden clearance — fence panels, timber and rubbish removed and the lawn cut.', sizes: '(min-width: 900px) 50vw, 100vw' })}
+    </div>
+    <div class="ty-links">
+      <a class="text-link" href="${site.links.google}" target="_blank" rel="noopener">Read our Google reviews ${icon.arrow}<span class="sr-only"> (opens in a new tab)</span></a>
+      <a class="text-link" href="${site.links.facebook}" target="_blank" rel="noopener">See more on Facebook ${icon.arrow}<span class="sr-only"> (opens in a new tab)</span></a>
+      <a class="text-link" href="/recent-work">More recent work ${icon.arrow}</a>
+    </div>
+  </div>
+</section>
+
+<section class="ty-slogan" aria-label="Our promise"><div class="container"><p>${esc(site.slogan)}.<span>Small or large, call ${site.phone.display} and we’ll quote it for free.</span></p></div></section>`;
   return { path, title, description, type: 'Utility', primaryKeyword: '—', noindex: true, schema: [schema.webPage({ path, title, description })], body };
 }
 
@@ -425,7 +461,7 @@ const legalShell = ({ path, name, title, description, updated = 'September 2026'
   return { path, title, description, type: 'Legal', primaryKeyword: '—', noindex: true, schema: [schema.webPage({ path, title, description }), schema.breadcrumbs(crumbs)], body };
 };
 
-const who = `${esc(site.name)} (a trading name of ${esc(site.legalName)}, company number ${site.companyNumber})`;
+const who = esc(site.name);
 
 export const legalPages = () => [
   legalShell({

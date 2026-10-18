@@ -165,11 +165,45 @@ export function quickForm({ context = '', heading = 'Quick quote' } = {}) {
     <div class="field"><label for="qf-phone-${uid}">Phone</label><input id="qf-phone-${uid}" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate="phone"></div>
     <div class="field"><label for="qf-postcode-${uid}">Postcode</label><input id="qf-postcode-${uid}" name="postcode" autocomplete="postal-code" required data-validate="postcode"></div>
   </div>
+  <div class="field"><label for="qf-email-${uid}">Email</label><input id="qf-email-${uid}" name="email" type="email" autocomplete="email" inputmode="email" required data-validate="email"></div>
   <div class="field"><label for="qf-service-${uid}">Service</label><select id="qf-service-${uid}" name="service" required><option value="">Choose a service</option>${services.map((s) => `<option>${esc(s.name)}</option>`).join('')}<option>Something else</option></select></div>
   <div class="field"><label for="qf-msg-${uid}">What needs removing? <span class="optional">(optional)</span></label><textarea id="qf-msg-${uid}" name="message" rows="3"></textarea></div>
   <button class="btn btn--primary btn--block btn--lg" type="submit">Get my free quote ${icon.arrow}</button>
   <p class="form-status" role="status" aria-live="polite"></p>
   <p class="form-note">By sending this form you agree to be contacted about your enquiry. See our <a href="/privacy-policy">privacy policy</a>.</p>
+</form>`;
+}
+
+// Two-step animated lead form for the hero: tap a service, then leave contact details.
+export function heroForm({ context = '' } = {}) {
+  const opts = [...services.map((s) => s.name), 'Something else'];
+  return `
+<form class="hero-form" data-lead-form data-hero-form data-form-name="Hero quick quote" novalidate aria-labelledby="hf-title">
+  <div class="hero-form__bar" aria-hidden="true"><i data-hf-bar></i></div>
+  <p class="hero-form__kicker">${esc(site.slogan)}</p>
+  <p class="hero-form__title" id="hf-title">Get your free quote in 30 seconds</p>
+  <input type="hidden" name="context" value="${esc(context)}">
+  <div class="hp" aria-hidden="true"><label for="hf-web">Leave this field empty</label><input id="hf-web" name="website" tabindex="-1" autocomplete="off"></div>
+  <div class="hero-form__steps">
+    <fieldset class="hf-step is-active" data-hf-step>
+      <legend>What needs clearing?</legend>
+      <div class="hf-chips">${opts.map((o, i) => `<label class="hf-chip" style="--i:${i}"><input type="radio" name="service" value="${esc(o)}" required><span>${esc(o)}</span></label>`).join('')}</div>
+      <p class="hf-hint">Tap one to continue — you can add the details on the phone.</p>
+    </fieldset>
+    <div class="hf-step" data-hf-step inert>
+      <button type="button" class="hf-back" data-hf-back>${icon.arrow}<span>Back</span></button>
+      <p class="hf-chosen">Quote for: <strong data-hf-chosen>—</strong></p>
+      <div class="field"><label for="hf-name">Name</label><input id="hf-name" name="name" autocomplete="name" required></div>
+      <div class="field-row">
+        <div class="field"><label for="hf-phone">Phone</label><input id="hf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-validate="phone"></div>
+        <div class="field"><label for="hf-postcode">Postcode</label><input id="hf-postcode" name="postcode" autocomplete="postal-code" required data-validate="postcode"></div>
+      </div>
+      <div class="field"><label for="hf-email">Email <span class="optional">(for your confirmation)</span></label><input id="hf-email" name="email" type="email" autocomplete="email" inputmode="email" required data-validate="email"></div>
+      <button class="btn btn--primary btn--block btn--lg hf-submit" type="submit"><span>Get my free quote</span> ${icon.arrow}</button>
+    </div>
+  </div>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="form-note">Free, no obligation. By sending this form you agree to be contacted about your enquiry — <a href="/privacy-policy">privacy policy</a>.</p>
 </form>`;
 }
 

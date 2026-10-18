@@ -32,6 +32,19 @@ Everything is centralised, so a change in one place updates every page:
 - `src/styles/site.css` and `src/scripts/site.js`: design system and interactions
 - `build/pages/*`: page templates; `build/lib/components.mjs`: shared sections
 
+## Speed-to-lead emails
+
+Forms POST JSON to `/api/lead` (`api/lead.js`, a Vercel function using the Resend HTTP API). Each submission sends Patrick a "New lead" alert (reply goes to the customer) and the customer a confirmation. Set these in Vercel → Settings → Environment Variables, then redeploy:
+
+| Variable | Example |
+| --- | --- |
+| `RESEND_API_KEY` | from resend.com → API Keys |
+| `LEAD_FROM` | `Able Rubbish <quotes@yourdomain.co.uk>` (domain verified in Resend) |
+| `LEAD_NOTIFY_TO` | Patrick's email (comma-separate for more people) |
+| `LEAD_PHONE` | optional, defaults to 07407 415289 |
+
+Check the logic with `node api/lead.check.mjs`. If `form.endpoint` in `src/data/site.mjs` is emptied, forms fall back to a pre-filled email.
+
 ## Connecting the forms
 
 Set `form.endpoint` in `src/data/site.mjs` to a CRM or webhook URL (for example GoHighLevel, Zapier, Make or Formspree). The forms send a JSON `POST` and then redirect to `/thank-you`.

@@ -3,7 +3,7 @@ import { services } from '../../src/data/services.mjs';
 import { page } from '../lib/layout.mjs';
 import { picture, icon, tel, esc } from '../lib/util.mjs';
 import * as schema from '../lib/schema.mjs';
-import { proofStrip, numberedServices, processSection, beforeAfter, reviewsSection, faqSection, finalCta, coverageSection } from '../lib/components.mjs';
+import { heroForm, proofStrip, numberedServices, processSection, beforeAfter, reviewsSection, faqSection, finalCta, coverageSection } from '../lib/components.mjs';
 import { generalFaqs } from '../../src/data/faqs.mjs';
 
 export function homePage() {
@@ -18,14 +18,15 @@ export function homePage() {
   <div class="container hero__inner">
     <div class="hero__copy">
       <p class="label label--light hero__label">Serving ${site.primaryLocation} &amp; surrounding areas</p>
-      <p class="hero__services" aria-hidden="true">Household <i>•</i> Clearances <i>•</i> Builders’ waste <i>•</i> Gardens</p>
+      <p class="hero__slogan">${esc(site.slogan)}</p>
       <h1 id="hero-h" class="h-display">Rubbish removed. Space reclaimed.<span> Waste removal across ${site.primaryLocation}, Essex &amp; east London.</span></h1>
       <p class="hero__lead">${esc(site.name)} clears household rubbish, whole houses, builders’ waste and overgrown gardens. We do the lifting, take it all away the same visit and quote for free — 7 days a week, 6am to 11pm.</p>
       <div class="cta-row">
-        <a class="btn btn--primary btn--lg" href="${site.primaryCta.href}">${site.primaryCta.label} ${icon.arrow}</a>
+        <a class="btn btn--primary btn--lg" href="${tel}">${icon.phone} Call ${site.phone.display}</a>
         <a class="btn btn--light-outline btn--lg" href="/services">View our services</a>
       </div>
     </div>
+    ${heroForm({ context: 'Homepage hero' })}
   </div>
   <div class="hero__proof"><div class="container">${proofStrip({ dark: true })}</div></div>
 </section>
@@ -47,7 +48,7 @@ export function homePage() {
   </div>
 </section>
 
-${numberedServices({ intro: `One company for rubbish removal, clearances and garden work — so you’re not arranging a skip, a gardener and a man with a van separately.` })}
+${numberedServices({ intro: `${site.slogan}. One company for rubbish removal, clearances and garden work — so you’re not arranging a skip, a gardener and a man with a van separately.` })}
 
 <section class="section section--dark why" aria-labelledby="why-h">
   <div class="container why__grid">
@@ -98,7 +99,7 @@ ${reviewsSection({ bgImage: 'gardenAfter' })}
 
 ${faqSection(faqs, { heading: 'Answers before you pick up the phone' })}
 
-${finalCta({ title: 'Ready to get it cleared?', text: `Tell us what needs to go and get a clear, free quote from a local team serving ${site.primaryLocation} and the surrounding areas.`, withForm: true, context: 'Homepage' })}
+${finalCta({ title: 'No job too big or small. Ready to get it cleared?', text: `Tell us what needs to go and get a clear, free quote from a local team serving ${site.primaryLocation} and the surrounding areas.`, withForm: true, context: 'Homepage' })}
 `;
 
   return {

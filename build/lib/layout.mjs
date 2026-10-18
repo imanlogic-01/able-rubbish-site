@@ -145,7 +145,7 @@ function footer() {
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span data-year>${BUILD_YEAR}</span> ${esc(site.name)}. ${esc(site.legalName)}, company number ${site.companyNumber}.</p>
+      <p>© <span data-year>${BUILD_YEAR}</span> ${esc(site.name)}. ${esc(site.slogan)}.</p>
       <nav aria-label="Legal"><ul><li><a href="/privacy-policy">Privacy</a></li><li><a href="/terms-and-conditions">Terms</a></li><li><a href="/accessibility">Accessibility</a></li><li><a href="/complaints-policy">Complaints</a></li></ul></nav>
     </div>
   </div>

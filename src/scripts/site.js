@@ -78,7 +78,7 @@
   // Hide the mobile call bar over the footer and forms
   const callBar = $('[data-mobile-call]');
   if (callBar && 'IntersectionObserver' in window) {
-    const hideZones = $$('.site-footer, .quote-form, .quick-form');
+    const hideZones = $$('.site-footer, .quote-form, .quick-form, .hero-form');
     const visible = new Set();
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => (en.isIntersecting ? visible.add(en.target) : visible.delete(en.target)));
@@ -273,6 +273,29 @@
       e.preventDefault();
       if (validateScope(steps[current])) submitLead(form);
     });
+  });
+
+  // Hero quick form: tap a service, slide to contact details
+  $$('[data-hero-form]').forEach((form) => {
+    const steps = $$('[data-hf-step]', form);
+    const bar = $('[data-hf-bar]', form);
+    const chosen = $('[data-hf-chosen]', form);
+    const go = (i) => {
+      steps.forEach((s, n) => {
+        s.classList.toggle('is-active', n === i);
+        if (n === i) s.removeAttribute('inert'); else s.setAttribute('inert', '');
+      });
+      bar.style.transform = `scaleX(${(i + 1) / steps.length})`;
+      form.classList.toggle('is-step-2', i === 1);
+      const target = i === 1 ? $('input[name=name]', form) : $('input[name=service]:checked', form) || $('input[name=service]', form);
+      setTimeout(() => target && target.focus({ preventScroll: true }), reduceMotion ? 0 : 380);
+    };
+    $$('input[name=service]', form).forEach((r) => r.addEventListener('click', () => {
+      chosen.textContent = r.value;
+      setTimeout(() => go(1), reduceMotion ? 0 : 260);
+    }));
+    $('[data-hf-back]', form).addEventListener('click', () => go(0));
+    bar.style.transform = 'scaleX(0.5)';
   });
 
   // Thank-you page message

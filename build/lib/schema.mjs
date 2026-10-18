@@ -18,7 +18,7 @@ export function localBusiness() {
     '@id': BUSINESS_ID,
     name: site.name,
     alternateName: [site.shortName],
-    legalName: site.legalName,
+    slogan: site.slogan,
     description: site.description,
     url: site.url,
     logo: `${site.url}/logo.svg`,

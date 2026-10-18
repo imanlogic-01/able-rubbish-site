@@ -13,14 +13,13 @@ export const site = {
 
   name: 'Able Rubbish and Gardening Services', // as supplied; used identically on every page
   shortName: 'Able Rubbish',                    // name shown on Google Business Profile
-  legalName: 'Able Rubbish Clearance Limited',  // Companies House
-  companyNumber: '05919680',                    // supplied; confirmed on Companies House
+  slogan: 'No job too big or small',            // painted on the company van
   businessType: 'rubbish removal and garden clearance company',
   description:
     'Able Rubbish and Gardening Services is a rubbish removal and garden clearance company providing waste removal, house clearances, builders’ waste removal and garden clearance across Basildon, south Essex and east London.',
 
   phone: { display: '07407 415289', e164: '+447407415289' }, // GBP, van livery, Facebook
-  email: 'Pat.ablerubbish@icloud.com',                         // supplied; Facebook intro
+  email: 'Pat.ablerubbish@icloud.com',                         // confirmed by Jamal 2026-10-18
 
   // Facebook page intro and the business's previous website. East Ham is one of the service areas.
   address: { street: '40 Talbot Road', area: 'East Ham', locality: 'London', postcode: 'E6 2RZ', country: 'GB' },
@@ -51,12 +50,12 @@ export const site = {
 
   // Form submissions: set `endpoint` to a CRM / webhook URL (JSON POST) to capture leads directly.
   // While empty, the form validates and then opens a pre-filled email to the business address.
-  form: { endpoint: '', method: 'POST' },
+  form: { endpoint: '/api/lead', method: 'POST' }, // Vercel function api/lead.js (Resend); empty = mailto fallback
 
   // Countdown banner shown at the top of every page. Set `enabled: false` to remove it everywhere.
   // `endsAt` is an ISO timestamp with its UTC offset; +01:00 is UK summer time (BST), use Z in winter (GMT).
   disableNotice: {
-    enabled: true,
+    enabled: false,
     endsAt: '2026-09-20T23:59:00+01:00',
     text: 'This site will be disabled in',
     shortText: 'Site disabled in',
