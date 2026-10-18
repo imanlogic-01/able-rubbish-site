@@ -55,7 +55,7 @@ ${numberedServices({ intro: `${site.slogan}. One company for rubbish removal, cl
     <div class="why__aside">
       <p class="label label--light">Why choose us</p>
       <h2 id="why-h" class="h2">The reasons customers use us again — in their words and ours</h2>
-      <div class="why__media reveal">${picture('van', { sizes: '(min-width: 1024px) 40vw, 100vw' })}</div>
+      <div class="why__media reveal">${picture('vanLivery', { sizes: '(min-width: 1024px) 40vw, 100vw' })}</div>
     </div>
     <ol class="why__list">
       <li class="reveal"><span class="why__num" aria-hidden="true">01</span><div><h3 class="h4">Rated ${site.proof.googleRating} on Google</h3><p>From ${site.proof.googleReviewCount} Google reviews, with customers calling the team “super helpful” and “hard working”.</p></div></li>
@@ -83,12 +83,12 @@ ${processSection({
   <div class="container">
     <div class="section-head section-head--split">
       <div><p class="label">Recent work</p><h2 id="work-h" class="h2">Drag to see the difference</h2></div>
-      <div><p class="lead">Real jobs, photographed by the team and shared on our Facebook page. Slide each image to compare before and after.</p><a class="text-link" href="/recent-work">See more recent work ${icon.arrow}</a></div>
+      <div><p class="lead">Real jobs, photographed by the team. Slide each image to compare before and after.</p><a class="text-link" href="/recent-work">See more recent work ${icon.arrow}</a></div>
     </div>
     <div class="work-grid">
       <div class="work-grid__item work-grid__item--tall reveal">${beforeAfter(['hallwayBefore', 'hallwayAfter'], { caption: 'House clearance — a hallway emptied of bags, bedding and household items.', sizes: '(min-width: 1024px) 34vw, 100vw' })}</div>
-      <div class="work-grid__item work-grid__item--tall reveal">${beforeAfter(['gardenBefore', 'gardenAfter'], { caption: 'Garden clearance — fence panels, timber and rubbish removed and the lawn cut.', sizes: '(min-width: 1024px) 34vw, 100vw' })}</div>
-      <div class="work-grid__item reveal">${beforeAfter(['frontBefore', 'frontAfter'], { caption: 'Front garden cleared and finished with slate chippings.', sizes: '(min-width: 1024px) 30vw, 100vw' })}</div>
+      <div class="work-grid__item work-grid__item--tall reveal">${beforeAfter(['treeBefore', 'treeAfter'], { caption: 'Tree removal — a large tree taken down and the area left clear.', sizes: '(min-width: 1024px) 34vw, 100vw' })}</div>
+      <div class="work-grid__item reveal">${beforeAfter(['gardenOvergrownBefore', 'gardenOvergrownAfter'], { caption: 'Garden clearance — a completely overgrown back garden cut back and cleared.', sizes: '(min-width: 1024px) 30vw, 100vw' })}</div>
     </div>
   </div>
 </section>

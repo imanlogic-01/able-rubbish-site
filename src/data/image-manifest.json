@@ -162,5 +162,159 @@
     "alt": "Builders’ bag of rubble, paint tubs and mixed renovation waste awaiting removal",
     "tier": "C",
     "source": "Google Business Profile"
+  },
+  "treeBefore": {
+    "slug": "tree-removal-before-large-tree-outside-flats",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Large mature tree outside a block of flats before tree removal",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "treeAfter": {
+    "slug": "tree-removal-after-tree-taken-down",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "The same spot after tree removal, with the tree taken down and the grass left clear",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "driveBefore": {
+    "slug": "front-drive-rubbish-before-clearance",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Mattress, wheelchair, suitcase and household rubbish piled in a front drive before rubbish removal",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "driveAfter": {
+    "slug": "front-drive-after-rubbish-removal",
+    "width": 1152,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1152
+    ],
+    "alt": "The same front drive after rubbish removal, with the mattress, wheelchair and suitcase cleared",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenCutBefore": {
+    "slug": "garden-clearance-tree-cuttings-before",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Back garden covered in tree branches and cuttings before garden clearance",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenCutAfter": {
+    "slug": "garden-clearance-tree-cuttings-after",
+    "width": 1152,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1152
+    ],
+    "alt": "The same back garden after clearance, with the branches removed and the patio and soil bed clear",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenYardBefore": {
+    "slug": "garden-clearance-hedge-trimmings-and-rubbish-before",
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "alt": "Side garden with hedge trimmings, broken timber, an oil heater and rubbish before garden clearance",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenYardAfter": {
+    "slug": "garden-clearance-hedge-trimmings-and-rubbish-after",
+    "width": 1152,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1152
+    ],
+    "alt": "The same side garden after clearance, with the trimmings and rubbish removed and the paving clear",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenOvergrownBefore": {
+    "slug": "overgrown-garden-clearance-before",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "Back garden completely overgrown with tall weeds before garden clearance",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "gardenOvergrownAfter": {
+    "slug": "overgrown-garden-clearance-after",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "The same back garden after clearance, cut back to bare soil and ready to use",
+    "tier": "A",
+    "source": "Owner photo"
+  },
+  "vanLivery": {
+    "slug": "able-waste-clearance-van-no-job-too-big-or-small",
+    "width": 2048,
+    "height": 1536,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "alt": "Able Waste Clearance caged tipper van with the slogan No job too big or small and the phone number 07407 415289",
+    "tier": "A",
+    "source": "Owner photo"
   }
 }

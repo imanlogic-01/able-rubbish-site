@@ -166,7 +166,7 @@ export function quickForm({ context = '', heading = 'Quick quote' } = {}) {
     <div class="field"><label for="qf-postcode-${uid}">Postcode</label><input id="qf-postcode-${uid}" name="postcode" autocomplete="postal-code" required data-validate="postcode"></div>
   </div>
   <div class="field"><label for="qf-email-${uid}">Email</label><input id="qf-email-${uid}" name="email" type="email" autocomplete="email" inputmode="email" required data-validate="email"></div>
-  <div class="field"><label for="qf-service-${uid}">Service</label><select id="qf-service-${uid}" name="service" required><option value="">Choose a service</option>${services.map((s) => `<option>${esc(s.name)}</option>`).join('')}<option>Something else</option></select></div>
+  <div class="field"><label for="qf-service-${uid}">Service</label><select id="qf-service-${uid}" name="service" required><option value="">Choose a service</option>${services.map((s) => `<option>${esc(s.name)}</option>`).join('')}<option>Tree Removal</option><option>Something else</option></select></div>
   <div class="field"><label for="qf-msg-${uid}">What needs removing? <span class="optional">(optional)</span></label><textarea id="qf-msg-${uid}" name="message" rows="3"></textarea></div>
   <button class="btn btn--primary btn--block btn--lg" type="submit">Get my free quote ${icon.arrow}</button>
   <p class="form-status" role="status" aria-live="polite"></p>
@@ -176,7 +176,7 @@ export function quickForm({ context = '', heading = 'Quick quote' } = {}) {
 
 // Two-step animated lead form for the hero: tap a service, then leave contact details.
 export function heroForm({ context = '' } = {}) {
-  const opts = [...services.map((s) => s.name), 'Something else'];
+  const opts = [...services.map((s) => s.name), 'Tree Removal', 'Something else'];
   return `
 <form class="hero-form" data-lead-form data-hero-form data-form-name="Hero quick quote" novalidate aria-labelledby="hf-title">
   <div class="hero-form__bar" aria-hidden="true"><i data-hf-bar></i></div>

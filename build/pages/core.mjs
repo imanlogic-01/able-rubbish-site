@@ -318,7 +318,7 @@ export function recentWorkPage() {
   const title = 'Recent Work | Before & After Clearances | Able Rubbish';
   const description = 'Before and after photos of real rubbish removal, house clearance and garden clearance jobs by Able Rubbish and Gardening Services.';
   const crumbs = [{ name: 'Home', href: '/' }, { name: 'Recent Work', href: path }];
-  const gallery = ['van', 'buildersBags', 'garagesBefore', 'hallwayAfter', 'gardenAfter', 'frontAfter', 'driveway', 'garagesAfter', 'hallwayBefore', 'gardenBefore', 'frontBefore', 'buildersPile'];
+  const gallery = ['vanLivery', 'treeAfter', 'driveAfter', 'gardenYardAfter', 'gardenCutAfter', 'buildersBags', 'garagesBefore', 'hallwayAfter', 'gardenAfter', 'frontAfter', 'driveway', 'garagesAfter', 'hallwayBefore', 'gardenBefore', 'frontBefore', 'buildersPile'];
 
   const body = `
 <section class="page-hero page-hero--plain">
@@ -326,7 +326,7 @@ export function recentWorkPage() {
     ${breadcrumb(crumbs)}
     <div class="page-hero__row">
       <div><p class="label">Recent work</p><h1 class="h1">Before and after: real clearances by our team</h1></div>
-      <p class="lead">Every photo here was taken on the job and shared on our Facebook page or Google Business Profile. Drag the sliders to compare, or tap any photo to view it larger.</p>
+      <p class="lead">Every photo here was taken on the job by our team. Drag the sliders to compare, or tap any photo to view it larger.</p>
     </div>
   </div>
 </section>
@@ -338,6 +338,11 @@ export function recentWorkPage() {
       <div class="reveal">${beforeAfter(['garagesBefore', 'garagesAfter'], { caption: 'Waste removal — mixed furniture, flooring and artificial grass cleared from a garage block.' })}<p class="ba-grid__service"><a href="/services/waste-removal">Waste removal ${icon.arrow}</a></p></div>
       <div class="reveal">${beforeAfter(['hallwayBefore', 'hallwayAfter'], { caption: 'House clearance — a hallway cleared of bags, bedding and household items.' })}<p class="ba-grid__service"><a href="/services/house-clearance">House clearance ${icon.arrow}</a></p></div>
       <div class="reveal">${beforeAfter(['gardenBefore', 'gardenAfter'], { caption: 'Garden clearance — broken fence panels, timber and rubbish cleared and the lawn cut.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance ${icon.arrow}</a></p></div>
+      <div class="reveal">${beforeAfter(['treeBefore', 'treeAfter'], { caption: 'Tree removal — a large tree taken down and the area left clear.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance and tree removal ${icon.arrow}</a></p></div>
+      <div class="reveal">${beforeAfter(['driveBefore', 'driveAfter'], { caption: 'Waste removal — a mattress, wheelchair, suitcase and rubbish cleared from a front drive.' })}<p class="ba-grid__service"><a href="/services/waste-removal">Waste removal ${icon.arrow}</a></p></div>
+      <div class="reveal">${beforeAfter(['gardenOvergrownBefore', 'gardenOvergrownAfter'], { caption: 'Garden clearance — a completely overgrown back garden cut back and cleared.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance ${icon.arrow}</a></p></div>
+      <div class="reveal">${beforeAfter(['gardenYardBefore', 'gardenYardAfter'], { caption: 'Garden clearance — hedge trimmings, broken timber and rubbish removed from a side garden.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance ${icon.arrow}</a></p></div>
+      <div class="reveal">${beforeAfter(['gardenCutBefore', 'gardenCutAfter'], { caption: 'Garden clearance — tree branches and cuttings cleared from a back garden.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance ${icon.arrow}</a></p></div>
       <div class="reveal">${beforeAfter(['frontBefore', 'frontAfter'], { caption: 'Front garden cleared and finished with slate chippings.' })}<p class="ba-grid__service"><a href="/services/garden-clearance">Garden clearance ${icon.arrow}</a></p></div>
     </div>
   </div>

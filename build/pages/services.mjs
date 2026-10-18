@@ -100,7 +100,7 @@ export function servicePage(s) {
 
 <section class="section" aria-labelledby="who-h">
   <div class="container split">
-    <div class="split__media reveal">${s.beforeAfter ? beforeAfter(s.beforeAfter, { caption: 'Recent work from our Facebook page — drag to compare.' }) : picture(s.featureImage, { sizes: '(min-width: 1024px) 45vw, 100vw' })}</div>
+    <div class="split__media reveal">${s.beforeAfter ? beforeAfter(s.beforeAfter, { caption: 'Recent work by our team — drag to compare.' }) : picture(s.featureImage, { sizes: '(min-width: 1024px) 45vw, 100vw' })}</div>
     <div class="split__copy">
       <p class="label">Who it’s for</p>
       <h2 id="who-h" class="h2">Who uses our ${esc(s.name.toLowerCase())} service?</h2>
@@ -128,7 +128,7 @@ ${processSection({ steps: s.process, heading: `How ${s.name.toLowerCase()} works
       </figure>
     </div>
     <div class="jobs__media reveal">
-      ${s.beforeAfterSecondary ? beforeAfter(s.beforeAfterSecondary, { caption: 'Front garden before and after clearance.', sizes: '(min-width: 1024px) 40vw, 100vw' }) : picture(s.featureImage, { sizes: '(min-width: 1024px) 40vw, 100vw', className: 'rounded-media' })}
+      ${s.beforeAfterSecondary ? beforeAfter(s.beforeAfterSecondary, { caption: s.beforeAfterSecondaryCaption || 'Front garden before and after clearance.', sizes: '(min-width: 1024px) 40vw, 100vw' }) : picture(s.featureImage, { sizes: '(min-width: 1024px) 40vw, 100vw', className: 'rounded-media' })}
     </div>
   </div>
 </section>
